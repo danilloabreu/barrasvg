@@ -2,7 +2,7 @@
             
 function marcarLotes(){
     resultado=null ;    
-        $.post( "/barrasvg/retorna_status_json.php", function( data ) {
+        $.post( "/sicor/controller/php/retorna_status_json.php", function( data ) {
             resultado = JSON.parse(data);
             for (i=0;i<resultado.length; i++){
             console.log (resultado[i].status);    

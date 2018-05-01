@@ -22,7 +22,7 @@
                     <section id="focal">
                         <div class="parent">
                             <div class="panzoom">
-                                <?php require('mapabarra.svg') ?>   
+                                <?php require('mapa1.svg') ?>   
                             </div>
                         </div>
                         <script>
@@ -52,5 +52,5 @@
                 </div>
             </main>    
         </body>
-    <script src="util/zoompan1/jquery.panzoom.js"></script>
+    <!--<script src="/sicor/util/zoompan1/jquery.panzoom.js"></script>-->
 </html>
