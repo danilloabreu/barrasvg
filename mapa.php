@@ -22,14 +22,14 @@
                         </div>
                         
                     </section>
-                <h2> Clique <a  target="_blank" href="http://sicor.quilombonet.com.br/tabela_curta.php">aqui</a> para verificar as condições da tabela curta</h2>
+                <!--<h2> Clique <a  target="_blank" href="http://sicor.quilombonet.com.br/tabela_curta.php">aqui</a> para verificar as condições da tabela curta</h2>-->
                 <h1>Legenda</h1>
                 <p>Azul - Reservado pela Loteadora</p>
                 <p>Cinza - Permuta</p>
                 <p>Branco - Disponivel</p>
                 <p>Amarelo - Proposta</p>
                 <p>Vermelho - Vendido</p>
-                <p> Caso as cores não aparecam, limpar o histórico do navegador desde o começo</p>
+                <!--<p> Caso as cores não aparecam, limpar o histórico do navegador desde o começo</p>-->
                 </div>
             </main>    
         </body>

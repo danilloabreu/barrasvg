@@ -32,19 +32,19 @@ function marcarLotes(){
                
                 switch (resultado[i].status){
                     case 0:
-                        cor="white";
+                        cor="lightgreen";
                         break;
                     case 1:
                         cor="yellow";
                         break;
                     case 2:
-                    cor="red";
+                    cor="lightcoral";
                         break;
                     case 3:
                     cor="blue";
                         break;
                     case 4:
-                    cor="grey";
+                    cor="lightslategrey";
                         break;
                 }//fim do switch
                 
