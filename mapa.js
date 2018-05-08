@@ -1,13 +1,5 @@
 $(document).ready(function(){
-/*
-$("svg").svgPanZoom({
-width: 500
-
-});
-*/
-$("svg").panzoom({
-  cursor:"default"
-});
+/**********Funções**********/
 
 function marcarLotes(){
     resultado=null ;
@@ -16,20 +8,7 @@ function marcarLotes(){
             resultado = JSON.parse(data);
                 for (i=0;i<resultado.length; i++){
 
-                /*switch (resultado[i].status){
-                    case 0:
-                        classe="disponivel";
-                        break;
-                    case 1:
-                        classe="proposta";
-                        break;
-                    case 2:
-                    classe="vendido";
-                        break;
-                }//fim do switch
-                */
-               
-               
+                //testa o resultado para determinar a cor das situações              
                 switch (resultado[i].status){
                     case 0:
                         cor="lightgreen";
@@ -54,7 +33,9 @@ function marcarLotes(){
                 $("#q"+resultado[i].quadra+"l"+resultado[i].lote).attr("corretor",resultado[i].corretor);
                 $("#q"+resultado[i].quadra+"l"+resultado[i].lote).attr("comprador",resultado[i].comprador);
 
-                    
+                //inserir tooltip
+                        if(resultado[i].status==2){
+                        
                         $("#q"+resultado[i].quadra+"l"+resultado[i].lote).tooltip({
                             track:true,
                             items: '[comprador], [corretor]',
@@ -62,59 +43,62 @@ function marcarLotes(){
                             return 'Comprador: ' + $(this).attr('comprador')+'<br/>Corretor: ' + $(this).attr('corretor');
                         }//fim do content
                         });//fim da tooltip
-                    $("#q"+resultado[i].quadra+"l"+resultado[i].lote).tooltip('enable');    
-                    
-                    if(resultado[i].status!=2){
-                    $("#q"+resultado[i].quadra+"l"+resultado[i].lote).tooltip('disable');    
                     }
+                    
+                       if(resultado[i].status==4){
+                        
+                        $("#q"+resultado[i].quadra+"l"+resultado[i].lote).tooltip({
+                            track:true,
+                            items: '[comprador], [corretor]',
+                            content: function () {
+                            return 'Permuta: ' + $(this).attr('comprador');
+                        }//fim do content
+                        });//fim da tooltip
+                    }
+
                 }//fim do laço for
         });//fim da função post
 }//fim da função marcar lotes
  
-marcarLotes();
-
-
 function setCheckSum_v (){
     $.get('/barrasvg/check_table.php', function (result){
-    //alert(result);
-    variavel=result;
-    //alert($(".checksum").val());
-    
+        variavel=result;
     });
-    }//fim da função set checksum
+}//fim da função set checksum
     
- function setCheckSum_e (){
+function setCheckSum_e (){
     $.get('/barrasvg/check_table.php', function (result){
-    //alert(result);
-    estatico=result;
-    //alert($(".checksum").val());
-     });
-    }
-    //fim da função set checksum   
+        estatico=result;
+    });
+}//fim da função set checksum   
    
 function verificaMudancaCheckSum(){
     var antigo =variavel;
-    //alert ("CheckSum fixo: "+antigo);
     setCheckSum_v();
     var novo =estatico;
-   // alert ("CheckSum variavel"+novo)
-    if(antigo!==novo){
-        estatico=variavel;
-        //alert ("Mudou"); 
-       //location.reload(true);
-        marcarLotes();
-    }
-
+        if(antigo!==novo){
+            estatico=variavel;
+            marcarLotes();
+        }//fim do if
 }
-//inicio do script
+//início do script
+
+//iniciar o panzoom
+$("svg").panzoom({
+  cursor:"default"
+});
+
+//desenhar lotes
+marcarLotes();
+
 //setar o checksum estatico
 setCheckSum_e();
 //setar o checksum variavel
 setCheckSum_v();
 
+//setar intervalo de mudança
 setInterval(function(){
     setCheckSum_v ();
     verificaMudancaCheckSum();}, 3000);    
-   
-    
+     
 });//fim da função ready
